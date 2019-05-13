@@ -28,22 +28,31 @@ public class equilibriumhellconvert {
                 break;
         
             case "2":
+                validResponse = true;
+                System.out.println(" ");
 
                 break;
             
             case "3":
+                validResponse = true;
+                System.out.println(" ");
 
                 break;
 
             case "4":
+                validResponse = true;
+                System.out.println(" ");
 
                 break;
 
             case "5":
-            
+                validResponse = true;
+                System.out.println(" ");
+
                 break;
             
             case "exit":
+                validResponse = true;
 
                 return;
 
