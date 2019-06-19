@@ -42,40 +42,73 @@ def iceSolver():
     print("#  Note: As of the current version of this application (0.8.9), only acid and base ICE table solvers are functional.")
     reactionType = input("#  (Types include acid, base, general, or buffer):  ")
     if reactionType == "general":
-        #k = float(scientificString(input("Enter K value:  ")))
-        leftSide = int(input("#  How many compounds are on the left side of the equation? \n(maximum of 3):  "))
+        generalIce()
+    print("")
+    main()
+
+def generalIce():
+    correctEq = False
+    while correctEq == False:
+        leftSide = int(input("#  How many compounds are on the left side of the equation? \n#  (maximum of 3):  "))
         leftSideComp = []
         rightSideComp = []
-        rightSide = int(input("#  How many compounds are on the right side of the equation? \n(maximum of 3):  "))
-        print("#  From left to right, enter the coeffecient of each of the compounds.")
+        rightSideCoef = []
+        leftSideCoef = []
+        compounds = []
+        rightSide = int(input("#  How many compounds are on the right side of the equation? \n#  (maximum of 3):  "))
+        print("#  From left to right, enter the coeffecient and compounds of the equation.")
         ratios = []
         i = 0
         while i < (leftSide + rightSide):
             if i == 0:
-                ratios.append(input("#  Enter 1st coeffecient:  "))
+                ratios.append(int(input("#  Enter 1st coeffecient:  ")))
+                compounds.append(input("#  Enter 1st compound:  "))
             elif i == 1:
-                ratios.append(input("#  Enter 2nd coeffecient:  "))
+                ratios.append(int(input("#  Enter 2nd coeffecient:  ")))
+                compounds.append(input("#  Enter 2nd compound:  "))
             elif i == 2:
-                ratios.append(input("#  Enter 3rd coeffecient:  "))
+                ratios.append(int(input("#  Enter 3rd coeffecient:  ")))
+                compounds.append(input("#  Enter 3nd compound:  "))
             else:
-                ratios.append(input("#  Enter " + str(i + 1) + "th coeffecient:  "))
+                ratios.append(int(input("#  Enter " + str(i + 1) + "th coeffecient:  ")))
+                compounds.append(input("#  Enter " + str(i + 1) + "th compound:  "))
             i = i + 1
         for x in range(0, leftSide):
-            leftSideComp.append(ratios[x])
+            leftSideCoef.append(ratios[x])
+            leftSideComp.append(compounds[x])
         for y in range(leftSide, leftSide + rightSide):
-            rightSideComp.append(ratios[y])
-        print(rightSideComp)
-        print(leftSideComp)
-        leftSideBal = []
-        rightSideBal = []
-        leftSideBal, rightSideBal = balanceEquation(leftSideComp, rightSideComp)
-        ratios = leftSideBal + rightSideBal
-         # Need to finish this later.
-         # Problem is that as the amount
-         # of compounds increases, so does
-         # the difficulty of calculating x.
-    print("")
-    main()
+            rightSideCoef.append(ratios[y])
+            rightSideComp.append(compounds[y])
+        print("#  The chemical equation is")
+        i = 0
+        print("#  ", end="")
+        while i < len(leftSideComp):
+            if i < (len(leftSideComp) - 1):
+                print(str(leftSideCoef[i]) + leftSideComp[i] + " + ", end="")
+            else:
+                print(str(leftSideCoef[i]) + leftSideComp[i] + " --> ", end="")
+            i = i + 1
+        i = 0
+        while i < len(rightSideComp):
+            if i < (len(rightSideComp) - 1):
+                print(str(rightSideCoef[i]) + rightSideComp[i] + " + ", end="")
+            else:
+                print(str(rightSideCoef[i]) + rightSideComp[i])
+            i = i + 1
+        correctEq = input("#  Is this the correct equation?\n#  Choose either yes or no:  ")
+        if correctEq == ("no" or "n" or "No" or "NO" or "N"):
+            correctEq = False
+        else:
+            correctEq = True
+    k = float(scientificString(input("#  Enter K value:  ")))
+
+
+
+
+    # Need to finish this later.
+    # Problem is that as the amount
+    # of compounds increases, so does
+    # the difficulty of calculating x.
 
 def main():
     print("1: Calculate pOH of a buffer from Kb (Henderson Hasselbalch equation)")
