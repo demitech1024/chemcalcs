@@ -100,7 +100,7 @@ def generalIce():
             correctEq = False
         else:
             correctEq = True
-    k = float(scientificString(input("#  Enter K value:  ")))
+    #k = float(scientificString(input("#  Enter K value:  ")))
 
 
 
